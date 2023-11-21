@@ -1,19 +1,19 @@
 /**
- * @description Find all functions longer than 10 lines
+ * @name Find functions longer than 10 lines
+ * @description Finds functions that have more than 10 lines of code, which might indicate complexity and potential refactor opportunities.
  * @kind problem
- * @id javascript/find-functions-longer-than-10-lines
- * @problem.severity recommendation
+ * @id js/find-long-functions
+ * @tags maintainability
+ *       complexity
  */
+
 import javascript
 
-/**
- * Holds if a function is longer than 10 lines.
- */
-
+// A predicate that checks if a function's body is longer than 10 lines
 predicate isFunctionLongerThan10Lines(Function f) {
-  f.getBody().getNumLines() > 10;
+  f.getBody().getNumLines() > 10
 }
 
-from Function function
-where isFunctionLongerThan10Lines(function)
-select function, "is a function that has longer than 10 lines"
+from Function f
+where isFunctionLongerThan10Lines(f)
+select f, f.getName() + " is longer than 10 lines."
